@@ -19,12 +19,17 @@ MotorModelType = 1;
 try 
    if(MotorModelType==1)
        save_system('MotorCtrl_FOC_Math.slx');
+       fprintf('数学模型保存中\n');
        close_system('MotorCtrl_FOC_Math.slx');
+       fprintf('数学模型已关闭\n');
    else
        save_system('MotorCtrl_FOC_Physic.slx');
+       fprintf('物理模型保存中\n');
        close_system('MotorCtrl_FOC_Physic.slx');
+       fprintf('物理模型已关闭\n');
    end
    Simulink.data.dictionary.closeAll;
+   fprintf('数据字典已关闭\n');
 catch
 
 end
