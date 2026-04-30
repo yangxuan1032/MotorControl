@@ -16,7 +16,7 @@ clc
 % 电压矢量角度步长
 N = 500;
 % 电压矢量圆周期
-cyc = 10;
+cyc = 13.5;
 % 母线电压
 Vdc = 13.5;
 % SVPWM正六边形调制最大电压
@@ -82,9 +82,9 @@ V_real_Point_Fast(3,:) = 1:1:length(Theta_real_Fast);
 
 figure(2)
 h1 = plot3(V_real_Point_Ori(1,:),V_real_Point_Ori(2,:),V_real_Point_Ori(3,:),":^");%'-ob','MarkerSize',10,'MarkerFaceColor','#D9FFFF');
-hold on
-h2 = plot3(V_real_Point_Fast(1,:),V_real_Point_Fast(2,:),V_real_Point_Fast(3,:),"-.pentagram");%'-ob','MarkerSize',10,'MarkerFaceColor','#D9FFFF');
-legend('SVPWM传统计算方式','快速SVPWM');
+% hold on
+% h2 = plot3(V_real_Point_Fast(1,:),V_real_Point_Fast(2,:),V_real_Point_Fast(3,:),"-.pentagram");%'-ob','MarkerSize',10,'MarkerFaceColor','#D9FFFF');
+% legend('SVPWM传统计算方式','快速SVPWM');
 % figure(3)
 % plot(T1);
 % hold on
@@ -201,7 +201,7 @@ function [T1_Pro,T2_Pro,Theta_Pro] = OverModulation_Quick(T1,T2,SectorN,Theta,Du
             Theta_Pro = (SectorN+1)*pi/3;
         end
     else
-        if(T2+(T1/2)>Duty_max)
+        if((T2+(T1/2)>Duty_max) && (T2>T1))
             T2_Pro = Duty_max;
             T1_Pro = Duty_min;
             if(mod(SectorN,2)==0)
